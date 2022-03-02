@@ -7,6 +7,7 @@ import { useState } from "react";
 import Table from "../components/Table";
 
 export default function Home() {
+  const [noTest, setNoTest] = useState(0);
   return (
     <div>
       <Head>
@@ -23,11 +24,11 @@ export default function Home() {
             <section className="grid place-items-center mb-[3.6rem]">
               <img src="/icons-svg/badge-mood-happy.svg" className="mt-[4.12rem]"></img>
               <h2 className="exe-h2 flex items-center mt-[1.32rem] translate-x-7">
-                Testimonials I’ve left <span className="exe-count ml-[1.6rem]">47</span>
+                Testimonials I’ve left <span className="exe-count ml-[1.6rem]">{noTest}</span>
               </h2>
               <img className="mt-[2rem]" src="/icons-svg/wriggle.svg"></img>
             </section>
-            <Table></Table>
+            <Table setNoTest={setNoTest}></Table>
           </div>
         </Container>
         {/* <input placeholder="Filter by exercise title" className="exe-search"></input>

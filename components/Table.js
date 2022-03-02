@@ -6,7 +6,7 @@ import TimeAgo from "javascript-time-ago";
 // English.
 import en from "javascript-time-ago/locale/en.json";
 
-const Table = () => {
+const Table = ({ setNoTest }) => {
   const [showTracks, setShowTracks] = useState(false);
   const [testimonials, setTestimonials] = useState([]);
   const [filteredTracks, setfilteredTracks] = useState([]);
@@ -16,6 +16,7 @@ const Table = () => {
   const [sort, setSort] = useState("newest_first");
   const [isFetching, setIsFetching] = useState(false);
   const [selectedTrack, setSelectedTrack] = useState("All");
+  const [trackCounts, setTrackCounts] = useState();
   const searchRef = useRef();
 
   // Time Ago
@@ -53,18 +54,21 @@ const Table = () => {
   async function fetchData() {
     setIsFetching(true);
     const allTracks = (await baseUrl.get("/tracks")).data.tracks;
-    console.log("sort iinrt data sort is...", sort);
+    // console.log("sort iinrt data sort is...", sort);
     const response = await baseUrl.get(`hiring/testimonials?order=${sort}`);
     const testimonials = response.data.testimonials.results;
     setTestimonials(testimonials);
     setIsFetching(false);
     const userTracks = response.data.testimonials.tracks;
     const trackCounts = response.data.testimonials.track_counts;
-    console.log("testimonials", testimonials);
+    console.log("this is track counts", trackCounts);
+    setTrackCounts(trackCounts);
+    setNoTest(response.data.testimonials.pagination.total_count);
+    // console.log("testimonials", testimonials);
     // console.log("tracks", userTracks);
     // console.log("all tracks", allTracks);
     // console.log("track counts", trackCounts);
-    console.log("total pages", response.data.testimonials.pagination.total_pages);
+    // console.log("total pages", response.data.testimonials.pagination.total_pages);
     setTotalPage(response.data.testimonials.pagination.total_pages);
 
     // Filter the tracks based on the user tracks
@@ -72,7 +76,7 @@ const Table = () => {
       return userTracks.includes(track.slug);
     });
     setfilteredTracks(filtered);
-    console.log(filtered);
+    // console.log(filtered);
   }
 
   // Fetch Testimonial
@@ -80,17 +84,17 @@ const Table = () => {
     setIsFetching(true);
     // const testimonials = (await baseUrl.get(`hiring/testimonials?page=${page}`)).data.testimonials.results;
     let url;
-    if (selectedTrack == "All" || selectedTrack == "F#s") {
+    if (selectedTrack == "All" || selectedTrack == "F#") {
       url = `hiring/testimonials?page=${page}&exercise=${searchRef.current.value}&order=${sort}`;
-      console.log("now fetching from fetch testimonial", url);
+      // console.log("now fetching from fetch testimonial", url);
     } else {
-      console.log("in fetch testimonial: sort is...", sort);
+      // console.log("in fetch testimonial: sort is...", sort);
       url = `hiring/testimonials?page=${page}&track=${selectedTrack.toLowerCase()}&exercise=${searchRef.current.value}&order=${sort}`;
     }
     const response = await baseUrl.get(url);
     const testimonials = response.data.testimonials.results;
-    console.log("Response...", response);
-    console.log("page change useEffect", testimonials);
+    // console.log("Response...", response);
+    // console.log("page change useEffect", testimonials);
     setTestimonials(testimonials);
     setTotalPage(response.data.testimonials.pagination.total_pages);
     // setPage(1);
@@ -99,7 +103,7 @@ const Table = () => {
 
   // Page Change
   function handleChangePage(e, page) {
-    console.log("page change", page);
+    // console.log("page change", page);
     setPage(page);
   }
 
@@ -137,7 +141,7 @@ const Table = () => {
       if (selectedTrack == "All") {
         url = `hiring/testimonials?page=${1}&exercise=${searchRef.current.value}&order=${sort}`;
       } else {
-        console.log("sort in schand selected track", sort);
+        // console.log("sort in schand selected track", sort);
         url = `hiring/testimonials?page=${1}&track=${selectedTrack.toLowerCase()}&exercise=${searchRef.current.value}&order=${sort}`;
       }
       const response = await baseUrl.get(url);
@@ -152,13 +156,13 @@ const Table = () => {
 
   // UseEffect for Sorting
   useEffect(() => {
-    console.log("sort in schand sort change", sort);
+    // console.log("sort in schand sort change", sort);
     fetchTestimonials();
   }, [sort]);
 
   return (
-    <section>
-      <div className="w-[100%] scroll_hide mx-auto exe-shadow mb-[2.4rem]">
+    <section className="relative">
+      <div className="w-[100%] scroll_hide overflow-scroll mx-auto exe-shadow mb-[2.4rem]">
         <table className=" w-full border-collapse scroll_hide rounded-[.8rem]">
           <thead className="text-bl text-black-light whitespace-nowrap bg-gray-lightest-2 caption_heavy h-[48px] font-medium rounded">
             <tr>
@@ -168,7 +172,7 @@ const Table = () => {
                     onClick={() => {
                       setShowTracks(!showTracks);
                     }}
-                    className="flex items-center relative cursor-pointer"
+                    className="flex items-center  cursor-pointer"
                   >
                     <img className="h-[4.2rem] mr-[1.463rem]" src="/icons-svg/exe-badge.svg"></img>
                     <svg className={` transition-all duration-300 ${showTracks ? " rotate-180" : ""}`} width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -180,7 +184,7 @@ const Table = () => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <TrackMenu selectedValue={selectedTrack} setSelectedValue={setSelectedTrack} tracks={filteredTracks} show={showTracks}></TrackMenu>
+                    <TrackMenu track_counts={trackCounts} selectedValue={selectedTrack} setSelectedValue={setSelectedTrack} tracks={filteredTracks} show={showTracks}></TrackMenu>
                   </div>
                   <input ref={searchRef} onChange={handleTyping} placeholder="Filter by exercise title" className="exe-search mr-auto ml-[2.4rem] w-[41.6rem]"></input>
                   <select
@@ -291,4 +295,9 @@ const Table = () => {
   );
 };
 
+async function getStaticProp() {
+  return {
+    props: {},
+  };
+}
 export default Table;
