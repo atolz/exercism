@@ -29,7 +29,7 @@ export default function Home({ initTest, initTracks, initTotalPage, initTrackCou
               </h2>
               <img className="mt-[2rem]" src="/icons-svg/wriggle.svg"></img>
             </section>
-            <Table initTest={initTest} initTrackCounts={initTrackCounts} initTotalPage={initTotalPage} initTracks={initTracks}></Table>
+            <Table initTest={initTest} initTrackCounts={initTrackCounts} initTotalPage={initTotalPage} initTracks={initTracks} initNoTest={initNoTest}></Table>
           </div>
         </Container>
         {/* <input placeholder="Filter by exercise title" className="exe-search"></input>
@@ -60,6 +60,7 @@ export async function getStaticProps() {
     return userTracks.includes(track.slug);
   });
   const filteredTracks = filtered;
+  console.log("no of test is", noTest);
 
   return {
     props: {
@@ -69,5 +70,6 @@ export async function getStaticProps() {
       initTrackCounts: trackCounts,
       initNoTest: noTest,
     },
+    revalidate: 10,
   };
 }

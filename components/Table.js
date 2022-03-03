@@ -6,7 +6,7 @@ import TimeAgo from "javascript-time-ago";
 // English.
 import en from "javascript-time-ago/locale/en.json";
 
-const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts }) => {
+const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTest }) => {
   const [showTracks, setShowTracks] = useState(false);
   const [testimonials, setTestimonials] = useState(initTest);
   const [filteredTracks, setfilteredTracks] = useState(initTracks);
@@ -185,7 +185,14 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts }) => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <TrackMenu track_counts={trackCounts} selectedValue={selectedTrack} setSelectedValue={setSelectedTrack} tracks={filteredTracks} show={showTracks}></TrackMenu>
+                    <TrackMenu
+                      totalTracks={initNoTest}
+                      track_counts={trackCounts}
+                      selectedValue={selectedTrack}
+                      setSelectedValue={setSelectedTrack}
+                      tracks={filteredTracks}
+                      show={showTracks}
+                    ></TrackMenu>
                   </div>
                   <input ref={searchRef} onChange={handleTyping} placeholder="Filter by exercise title" className="exe-search mr-auto ml-[2.4rem] w-[41.6rem]"></input>
                   <select
