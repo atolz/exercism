@@ -4,9 +4,10 @@ import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
 import Container from "../components/Container";
 import { useState } from "react";
+import { baseUrl } from "../axios/request";
 import Table from "../components/Table";
 
-export default function Home() {
+export default function Home({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTest }) {
   const [noTest, setNoTest] = useState(0);
   return (
     <div>
@@ -24,11 +25,11 @@ export default function Home() {
             <section className="grid place-items-center mb-[3.6rem]">
               <img src="/icons-svg/badge-mood-happy.svg" className="mt-[4.12rem]"></img>
               <h2 className="exe-h2 flex items-center mt-[1.32rem] translate-x-7">
-                Testimonials I’ve left <span className="exe-count ml-[1.6rem]">{noTest}</span>
+                Testimonials I’ve left <span className="exe-count ml-[1.6rem]">{initNoTest}</span>
               </h2>
               <img className="mt-[2rem]" src="/icons-svg/wriggle.svg"></img>
             </section>
-            <Table setNoTest={setNoTest}></Table>
+            <Table initTest={initTest} initTrackCounts={initTrackCounts} initTotalPage={initTotalPage} initTracks={initTracks}></Table>
           </div>
         </Container>
         {/* <input placeholder="Filter by exercise title" className="exe-search"></input>
@@ -42,4 +43,31 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  console.log("in get static props");
+  const allTracks = (await baseUrl.get("/tracks")).data.tracks;
+  const response = await baseUrl.get(`hiring/testimonials?order=newest_first`);
+  const testimonials = response.data.testimonials.results;
+  const userTracks = response.data.testimonials.tracks;
+  const trackCounts = response.data.testimonials.track_counts;
+  const noTest = response.data.testimonials.pagination.total_count;
+  const totalPage = response.data.testimonials.pagination.total_pages;
+
+  // Filter the tracks based on the user tracks
+  const filtered = allTracks.filter((track, i) => {
+    return userTracks.includes(track.slug);
+  });
+  const filteredTracks = filtered;
+
+  return {
+    props: {
+      initTest: testimonials,
+      initTracks: filteredTracks,
+      initTotalPage: totalPage,
+      initTrackCounts: trackCounts,
+      initNoTest: noTest,
+    },
+  };
 }

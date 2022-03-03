@@ -6,17 +6,17 @@ import TimeAgo from "javascript-time-ago";
 // English.
 import en from "javascript-time-ago/locale/en.json";
 
-const Table = ({ setNoTest }) => {
+const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts }) => {
   const [showTracks, setShowTracks] = useState(false);
-  const [testimonials, setTestimonials] = useState([]);
-  const [filteredTracks, setfilteredTracks] = useState([]);
+  const [testimonials, setTestimonials] = useState(initTest);
+  const [filteredTracks, setfilteredTracks] = useState(initTracks);
   const [activeTrack, setActiveTrack] = useState("");
   const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState();
+  const [totalPage, setTotalPage] = useState(initTotalPage);
   const [sort, setSort] = useState("newest_first");
   const [isFetching, setIsFetching] = useState(false);
   const [selectedTrack, setSelectedTrack] = useState("All");
-  const [trackCounts, setTrackCounts] = useState();
+  const [trackCounts, setTrackCounts] = useState(initTrackCounts);
   const searchRef = useRef();
 
   // Time Ago
@@ -51,33 +51,33 @@ const Table = ({ setNoTest }) => {
   const handleTyping = debounce(onSearch, 900);
 
   // Function to fetch and set filtered tracks and General setUp
-  async function fetchData() {
-    setIsFetching(true);
-    const allTracks = (await baseUrl.get("/tracks")).data.tracks;
-    // console.log("sort iinrt data sort is...", sort);
-    const response = await baseUrl.get(`hiring/testimonials?order=${sort}`);
-    const testimonials = response.data.testimonials.results;
-    setTestimonials(testimonials);
-    setIsFetching(false);
-    const userTracks = response.data.testimonials.tracks;
-    const trackCounts = response.data.testimonials.track_counts;
-    console.log("this is track counts", trackCounts);
-    setTrackCounts(trackCounts);
-    setNoTest(response.data.testimonials.pagination.total_count);
-    // console.log("testimonials", testimonials);
-    // console.log("tracks", userTracks);
-    // console.log("all tracks", allTracks);
-    // console.log("track counts", trackCounts);
-    // console.log("total pages", response.data.testimonials.pagination.total_pages);
-    setTotalPage(response.data.testimonials.pagination.total_pages);
+  // async function fetchData() {
+  //   setIsFetching(true);
+  //   const allTracks = (await baseUrl.get("/tracks")).data.tracks;
+  //   // console.log("sort iinrt data sort is...", sort);
+  //   const response = await baseUrl.get(`hiring/testimonials?order=${sort}`);
+  //   const testimonials = response.data.testimonials.results;
+  //   setTestimonials(testimonials);
+  //   setIsFetching(false);
+  //   const userTracks = response.data.testimonials.tracks;
+  //   const trackCounts = response.data.testimonials.track_counts;
+  //   console.log("this is track counts", trackCounts);
+  //   setTrackCounts(trackCounts);
+  //   setNoTest(response.data.testimonials.pagination.total_count);
+  //   // console.log("testimonials", testimonials);
+  //   // console.log("tracks", userTracks);
+  //   // console.log("all tracks", allTracks);
+  //   // console.log("track counts", trackCounts);
+  //   // console.log("total pages", response.data.testimonials.pagination.total_pages);
+  //   setTotalPage(response.data.testimonials.pagination.total_pages);
 
-    // Filter the tracks based on the user tracks
-    const filtered = allTracks.filter((track, i) => {
-      return userTracks.includes(track.slug);
-    });
-    setfilteredTracks(filtered);
-    // console.log(filtered);
-  }
+  //   // Filter the tracks based on the user tracks
+  //   const filtered = allTracks.filter((track, i) => {
+  //     return userTracks.includes(track.slug);
+  //   });
+  //   setfilteredTracks(filtered);
+  //   // console.log(filtered);
+  // }
 
   // Fetch Testimonial
   async function fetchTestimonials() {
@@ -121,7 +121,8 @@ const Table = ({ setNoTest }) => {
 
   useEffect(() => {
     // Make API to get All testimonial which included the tracks
-    fetchData();
+    // fetchData();
+    // setNoTest(initNoTest);
     // Filter the tracks based on testimonials track
     // Set the filtered tracks
   }, []);
@@ -295,9 +296,30 @@ const Table = ({ setNoTest }) => {
   );
 };
 
-async function getStaticProp() {
-  return {
-    props: {},
-  };
-}
+// export async function getStaticProps() {
+//   console.log("in get static props");
+//   const allTracks = (await baseUrl.get("/tracks")).data.tracks;
+//   const response = await baseUrl.get(`hiring/testimonials?order=${sort}`);
+//   const testimonials = response.data.testimonials.results;
+//   const userTracks = response.data.testimonials.tracks;
+//   const trackCounts = response.data.testimonials.track_counts;
+//   const noTest = response.data.testimonials.pagination.total_count;
+//   const totalPage = response.data.testimonials.pagination.total_pages;
+
+//   // Filter the tracks based on the user tracks
+//   const filtered = allTracks.filter((track, i) => {
+//     return userTracks.includes(track.slug);
+//   });
+//   const filteredTracks = filtered;
+
+//   return {
+//     props: {
+//       initTest: testimonials,
+//       initTracks: filteredTracks,
+//       initTotalPage: totalPage,
+//       initTrackCounts: trackCounts,
+//       initNoTest: noTest,
+//     },
+//   };
+// }
 export default Table;
