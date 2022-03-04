@@ -7,9 +7,9 @@ const TrackMenu = ({ show, tracks, setSelectedValue, selectedValue, track_counts
     setSelectedValue(event.target.value);
   };
 
-  useEffect(() => {
-    console.log("In track menu", tracks);
-  });
+  // useEffect(() => {
+  //   console.log("In track menu", tracks);
+  // });
   return (
     <div className={` bg-white absolute top-[8rem] left-[4rem] p-[.8rem] rounded-[.8rem] exe-shadow z-30 w-max transition-all opacity-0 ${show ? " visible opacity-100" : " invisible"}`}>
       <ul className="">
