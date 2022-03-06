@@ -241,7 +241,7 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
                     </span>
                   </td>
                   <td className="p-[16px] w-[51.3rem] ">
-                    <p className="tb-desc max-w-[51.3rem] text-left flex justify-left whitespace-nowrap overflow-hidden text-ellipsis">
+                    <p className="tb-desc max-w-[51.3rem] text-left block justify-left whitespace-nowrap overflow-hidden text-ellipsis">
                       {/* Very kind mentor who has patience to explain everything I am not s... */}
                       {el.content}
                     </p>

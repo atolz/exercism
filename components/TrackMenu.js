@@ -11,22 +11,22 @@ const TrackMenu = ({ show, tracks, setSelectedValue, selectedValue, track_counts
   //   console.log("In track menu", tracks);
   // });
   return (
-    <div className={` bg-white absolute top-[8rem] left-[4rem] p-[.8rem] rounded-[.8rem] exe-shadow z-30 w-max transition-all opacity-0 ${show ? " visible opacity-100" : " invisible"}`}>
-      <ul className="">
-        <li className="flex items-center px-[2.4rem] py-[.8rem] hover:bg-[#F0F3F9] cursor-pointer transition-all">
+    <div className={` bg-white absolute top-[8rem] left-[3rem] p-[.8rem] rounded-[.8rem] exe-shadow z-30 w-max transition-all opacity-0 ${show ? " visible opacity-100" : " invisible"}`}>
+      <ul className="w-[40.6rem]">
+        <li className="flex items-center justify-between px-[2.4rem] py-[.8rem] hover:bg-[#F0F3F9] cursor-pointer transition-all">
           <Radio checked={selectedValue === "All"} onChange={handleChange} value="All" name="radio-buttons" inputProps={{ "aria-label": "All" }} />
           <img className="ml-[2.6rem]" src="/icons-svg/exe-badge.svg" />
           <span className=" ml-[1.8rem] font-medium text-[1.6rem] leading-[2.2rem] text-[#3D3B45] mr-auto">All</span>
-          <span className="exe-count ml-[14.9rem]">{totalTracks}</span>
+          <span className="exe-count ">{totalTracks}</span>
         </li>
         {tracks.map((track, i) => {
           // console.log(track.slug);
           return (
-            <li className="flex items-center px-[2.4rem] py-[.8rem] hover:bg-[#F0F3F9] cursor-pointer transition-all" key={i}>
+            <li className="flex items-center justify-between px-[2.4rem] py-[.8rem] hover:bg-[#F0F3F9] cursor-pointer transition-all" key={i}>
               <Radio checked={selectedValue === track.slug} onChange={handleChange} value={track.slug} name="radio-buttons" inputProps={{ "aria-label": track.title }} />
               <img className="ml-[2.6rem] w-[3.76rem]" src={track.icon_url} />
               <span className=" ml-[1.8rem] font-medium text-[1.6rem] leading-[2.2rem] text-[#3D3B45] mr-auto">{track.title}</span>
-              <span className="exe-count ml-[14.9rem]">{track_counts[track.slug]}</span>
+              <span className="exe-count ">{track_counts[track.slug]}</span>
             </li>
           );
         })}

@@ -21,11 +21,11 @@ const Header = () => {
           <img src="/smiley-notification.svg" className="ml-auto"></img>
           <img src="/badge-notification.svg" className="ml-[3.4rem]"></img>
           <div className=" w-[4.2rem] h-[3.6rem] rounded-[.8rem] bg-[#FFF4E3] relative grid place-items-center ml-[4.4rem] shadow-yellow">
-            <span className="absolute -top-[10px] -right-[10px] w-[2.4rem] h-[2.4rem] rounded-full bg-[#D85050] text-[1.3rem] font-semibold text-white grid place-items-center">2</span>
+            <span className="absolute -top-[8px] -right-[10px] w-[2.2rem] h-[2.2rem] rounded-full bg-[#D85050] text-[1.2rem] font-semibold text-white grid place-items-center">2</span>
             <img className="h-[1.9rem]" src="/icons-svg/alarm-bell.svg"></img>
           </div>
           <button className="exe-btn-reputation ml-[3.3rem] relative">
-            <span className="absolute -top-[10px] -right-[10px] w-[1.7rem] h-[1.7rem] rounded-full bg-[#D85050] text-[1.3rem] font-semibold text-white grid place-items-center outline-3 outline-white outline"></span>
+            <span className="absolute -top-[8px] -right-[8px] w-[1.5rem] h-[1.5rem] rounded-full bg-[#D85050] text-[1.3rem] font-semibold text-white grid place-items-center outline-3 outline-white outline"></span>
             <img src="https://d24y9kuxp2d7l2.cloudfront.net/icons/reputation-5b5938e36519908ac61075db3b9826307a0f907a.svg" alt="Reputation" className="c-icon" />
             <span>300K</span>
           </button>
