@@ -39,7 +39,7 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
 
   const onSearch = async () => {
     setIsFetching(true);
-    const response = await baseUrl.get(`hiring/testimonials?exercise=${searchRef.current.value}${selectedTrack == "All" ? "" : `&track=${selectedTrack.toLowerCase()}`}`);
+    const response = await baseUrl.get(`hiring/testimonials?exercise=${searchRef.current.value}${selectedTrack == "All" ? "" : `&track=${selectedTrack.toLowerCase()}`}&order=${sort}`);
     console.log("search exercise response", response.data.testimonials);
     const testimonials = response.data.testimonials.results;
     setPage(1);
