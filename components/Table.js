@@ -17,6 +17,7 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
   const [isFetching, setIsFetching] = useState(false);
   const [selectedTrack, setSelectedTrack] = useState("All");
   const [trackCounts, setTrackCounts] = useState(initTrackCounts);
+  const [isMounted, setIsMounted] = useState(false);
   const searchRef = useRef();
 
   // Time Ago
@@ -125,12 +126,16 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
     // setNoTest(initNoTest);
     // Filter the tracks based on testimonials track
     // Set the filtered tracks
+    setIsMounted(true);
   }, []);
 
   // Use Effect for page changes..
   useEffect(() => {
     // Fetch new testimonial anytime the page number changes
-    fetchTestimonials();
+    console.log("page testimonials useEffect ", initTest);
+    if (isMounted) {
+      fetchTestimonials();
+    }
   }, [page]);
 
   // UseEffect for Track selection change
@@ -151,14 +156,19 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
       setTotalPage(response.data.testimonials.pagination.total_pages);
       setIsFetching(false);
     }
-
-    fetch();
+    console.log("selected tracks testimonials useeffect ", initTracks);
+    if (isMounted) {
+      fetch();
+    }
   }, [selectedTrack]);
 
   // UseEffect for Sorting
   useEffect(() => {
     // console.log("sort in schand sort change", sort);
-    fetchTestimonials();
+    console.log("sort tracks testimonials useeffect");
+    if (isMounted) {
+      fetchTestimonials();
+    }
   }, [sort]);
 
   return (
@@ -224,7 +234,7 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
                 </td>
               </tr>
             )}
-            {testimonials.map((el, i) => {
+            {testimonials?.map((el, i) => {
               return (
                 <tr className="border-b border-[#EAECF3] hover:bg-slate-200 pt-[.95rem] pb-[1.25rem] cursor-pointer" key={i}>
                   <td className="px-[2.5rem] align-text-bottom w-[80px]">

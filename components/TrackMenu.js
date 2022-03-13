@@ -19,7 +19,7 @@ const TrackMenu = ({ show, tracks, setSelectedValue, selectedValue, track_counts
           <span className=" ml-[1.8rem] font-medium text-[1.6rem] leading-[2.2rem] text-[#3D3B45] mr-auto">All</span>
           <span className="exe-count ">{totalTracks}</span>
         </li>
-        {tracks.map((track, i) => {
+        {tracks?.map((track, i) => {
           // console.log(track.slug);
           return (
             <li className="flex items-center justify-between px-[2.4rem] py-[.8rem] hover:bg-[#F0F3F9] cursor-pointer transition-all" key={i}>
