@@ -24,7 +24,7 @@ export default function Home({ initTest, initTracks, initTotalPage, initTrackCou
           <div>
             <section className="grid place-items-center mb-[3.6rem]">
               <img src="/icons-svg/badge-mood-happy.svg" className="mt-[4.12rem]"></img>
-              <h2 className="exe-h2 flex items-center mt-[1.32rem] translate-x-7">
+              <h2 className="exe-h2 flex flex-wrap justify-center items-center mt-[1.32rem] translate-x-7">
                 Testimonials I’ve left <span className="exe-count ml-[1.6rem]">{initNoTest}</span>
               </h2>
               <img className="mt-[2rem]" src="/icons-svg/wriggle.svg"></img>
@@ -73,3 +73,32 @@ export async function getStaticProps() {
     revalidate: 10,
   };
 }
+
+// Get initial props
+// export async function gip() {
+//   console.log("in get static props");
+//   const allTracks = (await baseUrl.get("/tracks")).data.tracks;
+//   const response = await baseUrl.get(`hiring/testimonials?order=newest_first`);
+//   const testimonials = response.data.testimonials.results;
+//   const userTracks = response.data.testimonials.tracks;
+//   const trackCounts = response.data.testimonials.track_counts;
+//   const noTest = response.data.testimonials.pagination.total_count;
+//   const totalPage = response.data.testimonials.pagination.total_pages;
+
+//   // Filter the tracks based on the user tracks
+//   const filtered = allTracks.filter((track, i) => {
+//     return userTracks.includes(track.slug);
+//   });
+//   const filteredTracks = filtered;
+//   console.log("no of test is", noTest);
+
+//   return {
+//     initTest: testimonials,
+//     initTracks: filteredTracks,
+//     initTotalPage: totalPage,
+//     initTrackCounts: trackCounts,
+//     initNoTest: noTest,
+//   };
+// }
+
+// Home.getInitialProps = gip;

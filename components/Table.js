@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
+import Image from "next/image";
 import TrackMenu from "./TrackMenu";
 import Pagination from "@mui/material/Pagination";
 import { baseUrl } from "../axios/request";
@@ -185,7 +186,10 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
                     }}
                     className="flex items-center  cursor-pointer"
                   >
-                    <img className="h-[4.2rem] mr-[1.463rem]" src="/icons-svg/exe-badge.svg"></img>
+                    {/* <img className="h-[4.2rem] mr-[1.463rem]" src="/icons-svg/exe-badge.svg"></img> */}
+                    <div className=" mr-[1.463rem]">
+                      <Image layout="fixed" height={42} width={42} src="/icons-svg/exe-badge.svg" alt="exercism-badge"></Image>
+                    </div>
                     <svg className={` transition-all duration-300 ${showTracks ? " rotate-180" : ""}`} width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M13.5938 0.960125L7.78708 6.76625C7.71098 6.84246 7.6077 6.88528 7.5 6.88528C7.3923 6.88528 7.28902 6.84246 7.21292 6.76625L1.40625 0.960125"
@@ -228,8 +232,9 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
             {isFetching && (
               <tr className="">
                 <td className="" colSpan="4">
-                  <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center !bg-[rgba(255,255,255,0.9)]">
-                    <img className="w-[6.4rem] animate-spin" src="/loading-circle.svg" />
+                  <div className="absolute z-50 top-0 left-0 w-full h-full flex items-center justify-center !bg-[rgba(255,255,255,0.9)]">
+                    {/* <img className="w-[6.4rem] animate-spin" src="/loading-circle.svg" /> */}
+                    <Image layout="fixed" height={64} width={64} src="/loading-circle.svg" alt="spinner"></Image>
                   </div>
                 </td>
               </tr>
@@ -237,13 +242,18 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
             {testimonials?.map((el, i) => {
               return (
                 <tr className="border-b border-[#EAECF3] hover:bg-slate-200 pt-[.95rem] pb-[1.25rem] cursor-pointer" key={i}>
-                  <td className="px-[2.5rem] align-text-bottom w-[80px]">
-                    <div className="flex items-center">
-                      <img className="h-[3.2rem]" src={el.track.icon_url} />
+                  <td className="px-[2.5rem]  w-[80px]">
+                    <div className="flex items-center relative z-10">
+                      <Image layout="fixed" height={32} width={32} src={el.track.icon_url} alt="track-icon"></Image>
+
+                      {/* <img className="h-[3.2rem]" src={el.track.icon_url} /> */}
                     </div>
                   </td>
                   <td className="pt-[1.25rem] pb-[1.25rem] grid grid-flow-col w-max auto-cols-max gap-x-7">
-                    <img src={el.mentor.avatar_url} className="rounded-full row-span-2 justify-start justify-self-start w-[4.2rem] "></img>
+                    <div className="rounded-full row-span-2 justify-start justify-self-start">
+                      <Image className=" rounded-full" layout="fixed" height={42} width={42} src={el.mentor.avatar_url} alt={el.mentor.handle}></Image>
+                    </div>
+                    {/* <img src={el.mentor.avatar_url} className="rounded-full row-span-2 justify-start justify-self-start w-[4.2rem] "></img> */}
                     <h4 className="tb-name">{el.mentor.handle}</h4>
                     <span className="tb-sub">
                       {/* on Series in Bash */}
