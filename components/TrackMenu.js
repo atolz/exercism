@@ -12,7 +12,7 @@ const TrackMenu = ({ show, tracks, setSelectedValue, selectedValue, track_counts
   // });
   return (
     <div
-      className={` h-[42rem] w-full max-w-[37.6rem] scroll_hide overflow-y-scroll overflow-x-hidden bg-white absolute top-[8rem] left-[3rem] p-[.8rem] rounded-[.8rem] exe-shadow z-30 transition-all opacity-0 ${
+      className={` h-[42rem] w-full max-w-[37.6rem] scroll_hide overflow-y-scroll overflow-x-hidden bg-white absolute top-[8rem] left-[3rem] p-[.8rem] rounded exe-shadow z-30 transition-all opacity-0 ${
         show ? " visible opacity-100" : " invisible"
       }`}
     >

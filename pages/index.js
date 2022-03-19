@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import Header from "../components/Header";
-import styles from "../styles/Home.module.css";
 import Container from "../components/Container";
 import { useState } from "react";
 import { baseUrl } from "../axios/request";
@@ -24,7 +23,7 @@ export default function Home({ initTest, initTracks, initTotalPage, initTrackCou
           <div>
             <section className="grid place-items-center mb-[3.6rem]">
               <img src="/icons-svg/badge-mood-happy.svg" className="mt-[4.12rem]"></img>
-              <h2 className="exe-h2 flex flex-wrap justify-center items-center mt-[1.32rem] translate-x-7">
+              <h2 className="exe-h2  flex flex-wrap justify-center items-center mt-[1.32rem] translate-x-7">
                 Testimonials I’ve left <span className="exe-count ml-[1.6rem]">{initNoTest}</span>
               </h2>
               <img className="mt-[2rem]" src="/icons-svg/wriggle.svg"></img>

@@ -1,5 +1,5 @@
 .nav-text {
-  color: #5c5589;
+  color: var(--color-secondary);
   font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -21,7 +21,7 @@
 }
 
 .count-text {
-  color: #5c5589;
+  color: var(--color-secondary);
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-style: normal;
@@ -39,7 +39,7 @@
   line-height: 43px;
   letter-spacing: 0em;
   text-align: center;
-  color: #130b43;
+  color: var(--color-default);
 }
 
 .tb-name {
@@ -50,7 +50,7 @@
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
-  color: #130b43;
+  color: var(--color-default);
 }
 
 .tb-desc {
@@ -65,7 +65,7 @@
 }
 
 .tb-time {
-  color: #5c5589;
+  color: var(--color-secondary);
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-style: normal;
@@ -76,7 +76,7 @@
 }
 
 .tb-sub {
-  color: #5c5589;
+  color: var(--color-secondary);
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-style: normal;
@@ -87,7 +87,7 @@
 }
 
 .tb-page {
-  color: #130b43;
+  color: var(--color-default);
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-style: normal;

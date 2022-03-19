@@ -174,7 +174,7 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
 
   return (
     <section className="relative">
-      <div className="w-[100%] scroll_hide overflow-scroll mx-auto exe-shadow mb-[2.4rem]">
+      <div className="w-[100%] scroll_hide overflow-scroll mx-auto exe-shadow mb-[2.4rem] rounded">
         <table className=" w-full border-collapse scroll_hide rounded-[.8rem]">
           <thead className="text-bl text-black-light whitespace-nowrap bg-gray-lightest-2 caption_heavy h-[48px] font-medium rounded">
             <tr>

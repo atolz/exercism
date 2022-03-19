@@ -3,9 +3,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#130B43",
-        secondary: "#5C5589",
+        primary: "var(--color-default)",
+        secondary: "var(--color-secondary)",
       },
+    },
+
+    borderRadius: {
+      none: "0",
+      sm: "0.125rem",
+      DEFAULT: ".8rem",
+      md: "0.375rem",
+      lg: "0.5rem",
+      full: "9999px",
+      large: "12px",
     },
     screens: {
       sm: "640px",
