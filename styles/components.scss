@@ -182,16 +182,16 @@
 
   &:nth-child(2) {
     color: #3f3a5a;
-    font-size: 2rem !important;
+    // font-size: 2rem !important;
     // transform: translate(2.5px, 3px);
   }
 }
 
-.MuiRadio-root.Mui-checked .MuiSvgIcon-root {
-  &:nth-child(2) {
-    transform: translate(2.5px, 2.6px);
-  }
-}
+// .MuiRadio-root.Mui-checked .MuiSvgIcon-root {
+//   &:nth-child(2) {
+//     transform: translate(2.5px, 2.6px);
+//   }
+// }
 
 .MuiPagination-ul .MuiButtonBase-root {
   border-radius: 5px;
