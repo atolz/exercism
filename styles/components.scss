@@ -9,7 +9,7 @@
   outline: 1px solid transparent;
   transition: all 0.3s;
 
-  font-family: Poppins;
+  // font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -19,7 +19,8 @@
 
   &::placeholder {
     color: var(--color-secondary);
-    font-family: Poppins;
+    color: #5c5589 !important;
+    // font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -49,7 +50,7 @@
   cursor: pointer;
 
   color: var(--color-secondary);
-  font-family: Poppins;
+  // font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
