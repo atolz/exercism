@@ -26,7 +26,7 @@ const TrackMenu = ({ show, tracks, setSelectedValue, selectedValue, track_counts
           <Radio checked={selectedValue === "All"} onChange={handleChange} value="All" name="radio-buttons" inputProps={{ "aria-label": "All" }} />
           <img className="ml-[2.6rem]" src="/icons-svg/exe-badge.svg" />
           <span className=" ml-[1.8rem] font-medium text-[1.6rem] leading-[2.2rem] text-[#3D3B45] mr-auto">All</span>
-          <span className="exe-count ">{totalTracks}</span>
+          <span className={`exe-count ${selectedValue === "All" ? " !text-primary" : ""}`}>{totalTracks}</span>
         </li>
         {tracks?.map((track, i) => {
           // console.log(track.slug);
@@ -41,7 +41,7 @@ const TrackMenu = ({ show, tracks, setSelectedValue, selectedValue, track_counts
               <Radio checked={selectedValue === track.slug} onChange={handleChange} value={track.slug} name="radio-buttons" inputProps={{ "aria-label": track.title }} />
               <img className="ml-[2.6rem] w-[3.76rem]" src={track.icon_url} />
               <span className=" ml-[1.8rem] font-medium text-[1.6rem] leading-[2.2rem] text-[#3D3B45] mr-auto">{track.title}</span>
-              <span className="exe-count ">{track_counts[track.slug]}</span>
+              <span className={`exe-count ${selectedValue === track.slug ? " !text-primary" : ""}`}>{track_counts[track.slug]}</span>
             </li>
           );
         })}
