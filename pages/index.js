@@ -28,11 +28,18 @@ export default function Home({ initTest, initTracks, initTotalPage, initTrackCou
         <Container>
           <div>
             <section className="grid place-items-center mb-[3.6rem]">
-              <img src="/icons-svg/badge-mood-happy.svg" className="mt-[4.12rem]"></img>
+              {/* <img src="/icons-svg/badge-mood-happy.svg" className="mt-[4.12rem]"></img> */}
+              <div className="!mt-[4.12rem] !block">
+                <Image layout="fixed" height={64} width={64} src="/icons-svg/badge-mood-happy.svg" alt="exercism-badge"></Image>
+              </div>
+
               <h2 className="exe-h2  flex flex-wrap justify-center items-center mt-[1.32rem] translate-x-7">
                 Testimonials I’ve left <span className="exe-count ml-[1.6rem]">{initNoTest}</span>
               </h2>
-              <img className="mt-[2rem]" src="/icons-svg/wriggle.svg"></img>
+              <div className="!mt-[2rem] !block">
+                <Image layout="fixed" height={18} width={78} src="/icons-svg/wriggle.svg" alt="wriggle"></Image>
+              </div>
+              {/* <img className="mt-[2rem]" src="/icons-svg/wriggle.svg"></img> */}
             </section>
             <Table initTest={initTest} initTrackCounts={initTrackCounts} initTotalPage={initTotalPage} initTracks={initTracks} initNoTest={initNoTest}></Table>
           </div>
