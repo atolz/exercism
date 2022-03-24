@@ -234,7 +234,9 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
                 <td className="" colSpan="4">
                   <div className="absolute z-50 top-0 left-0 w-full h-full flex items-center justify-center !bg-[rgba(255,255,255,0.9)]">
                     {/* <img className="w-[6.4rem] animate-spin" src="/loading-circle.svg" /> */}
-                    <Image className="animate-spin" layout="fixed" height={64} width={64} src="/loading-circle.svg" alt="spinner"></Image>
+                    <div className=" -translate-y-[50rem]">
+                      <Image className="animate-spin" layout="fixed" height={64} width={64} src="/loading-circle.svg" alt="spinner"></Image>
+                    </div>
                   </div>
                 </td>
               </tr>
