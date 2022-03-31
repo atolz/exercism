@@ -6,6 +6,8 @@ import { baseUrl } from "../axios/request";
 import TimeAgo from "javascript-time-ago";
 // English.
 import en from "javascript-time-ago/locale/en.json";
+import Select from "./Select";
+import Search from "./Search";
 
 const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTest }) => {
   const [showTracks, setShowTracks] = useState(false);
@@ -51,6 +53,11 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
     setIsFetching(false);
   };
   const handleTyping = debounce(onSearch, 900);
+
+  const setSt = () => {
+    console.log("In set St");
+    setShowTracks((value) => !value);
+  };
 
   // Function to fetch and set filtered tracks and General setUp
   // async function fetchData() {
@@ -174,20 +181,21 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
 
   return (
     <section className="relative">
-      <div className="w-[100%] scroll_hide overflow-scroll mx-auto exe-shadow mb-[2.4rem] rounded">
-        <table className=" w-full border-collapse scroll_hide rounded-[.8rem]">
-          <thead className="text-bl text-black-light whitespace-nowrap bg-gray-lightest-2 caption_heavy h-[48px] font-medium rounded">
+      <div className="w-[100%] scroll_hide overflow-scroll mx-auto exe-shadow mb-[2.4rem] rounded-lg">
+        <table className=" w-full border-collapse scroll_hide rounded-lg">
+          <thead className="text-bl text-black-light whitespace-nowrap bg-gray-lightest-2 caption_heavy h-12 font-medium rounded-lg">
             <tr>
-              <th className="border-b border-[#D5D8E4] font-medium py-[1.6rem] px-[2.4rem]" colSpan="4">
+              <th className="border-b border-[#D5D8E4] font-medium py-4  px-6" colSpan="4">
                 <div className="flex justify-between items-center">
                   <div
                     onClick={() => {
+                      // console.log("overfalll parent clicked....");
                       setShowTracks(!showTracks);
                     }}
-                    className="flex items-center  cursor-pointer"
+                    className="flex items-center cursor-pointer"
                   >
                     {/* <img className="h-[4.2rem] mr-[1.463rem]" src="/icons-svg/exe-badge.svg"></img> */}
-                    <div className=" mr-[1.463rem]">
+                    <div className=" mr-[0.914rem] grid">
                       <Image layout="fixed" height={42} width={42} src="/icons-svg/exe-badge.svg" alt="exercism-badge"></Image>
                     </div>
                     <svg className={` transition-all duration-300 ${showTracks ? " rotate-180" : ""}`} width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -207,23 +215,17 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
                       tracks={filteredTracks}
                       show={showTracks}
                     ></TrackMenu>
+
+                    {/* Open/Close Track Transparent bg  */}
+                    <div className={` bg-transparent z-20 fixed top-0 left-0 h-screen w-screen ${showTracks ? "flex" : "hidden"}`}></div>
                   </div>
-                  <input ref={searchRef} onChange={handleTyping} placeholder="Filter by exercise title" className="exe-search mr-auto ml-[2.4rem] w-[41.6rem]"></input>
-                  <select
+                  <Search reference={searchRef} onChange={handleTyping}></Search>
+                  {/* <input placeholder="Filter by exercise title" className="exe-search mr-auto  ml-6 w-[26rem]"></input> */}
+                  <Select
                     onChange={(e) => {
                       setSort(e.target.value);
                     }}
-                    className="exe-select w-[34.8rem] ml-auto"
-                    name="cars"
-                    id="cars"
-                  >
-                    <option className="cu cursor-pointer" value="newest_first">
-                      Sort by Most Recent
-                    </option>
-                    <option className="cu cursor-pointer" value="oldest_first">
-                      Sort by Oldest
-                    </option>
-                  </select>
+                  ></Select>
                 </div>
               </th>
             </tr>
@@ -243,34 +245,38 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
             )}
             {testimonials?.map((el, i) => {
               return (
-                <tr className="border-b border-[#EAECF3] hover:bg-slate-200 pt-[.95rem] pb-[1.25rem] cursor-pointer" key={i}>
-                  <td className="px-[2.5rem]  w-[80px]">
-                    <div className="flex items-center relative z-10">
+                <tr className="border-b border-[#EAECF3] hover:bg-slate-200 pt-[9.5px] pb-[12.5px]  cursor-pointer" key={i}>
+                  <td className="px-6 w-20">
+                    <button className="flex items-center relative z-10">
                       <Image layout="fixed" height={32} width={32} src={el.track.icon_url} alt="track-icon"></Image>
 
                       {/* <img className="h-[3.2rem]" src={el.track.icon_url} /> */}
-                    </div>
+                    </button>
                   </td>
-                  <td className="pt-[1.25rem] pb-[1.25rem] grid grid-flow-col w-max auto-cols-max gap-x-7">
-                    <div className="rounded-full row-span-2 justify-start justify-self-start">
+                  <td className=" pt-3 pb-3 grid grid-flow-col w-max auto-cols-max gap-x-4 content-start">
+                    <div className="rounded-full grid place-content-center row-span-2 justify-start justify-self-start">
                       <Image className=" rounded-full" layout="fixed" height={42} width={42} src={el.mentor.avatar_url} alt={el.mentor.handle}></Image>
                     </div>
                     {/* <img src={el.mentor.avatar_url} className="rounded-full row-span-2 justify-start justify-self-start w-[4.2rem] "></img> */}
-                    <h4 className="tb-name">{el.mentor.handle}</h4>
+                    <button>
+                      <h4 className="tb-name">{el.mentor.handle}</h4>
+                    </button>
                     <span className="tb-sub">
                       {/* on Series in Bash */}
                       {el.exercise.slug}
                     </span>
                   </td>
-                  <td className="p-[16px] w-[51.3rem] ">
-                    <p className="tb-desc max-w-[51.3rem] text-left block justify-left whitespace-nowrap overflow-hidden text-ellipsis">
-                      {/* Very kind mentor who has patience to explain everything I am not s... */}
-                      {el.content}
-                    </p>
+                  <td className="p-[16px] w-[32.063rem] ">
+                    <button>
+                      <p className="tb-desc max-w-[32.063rem] text-left block justify-left whitespace-nowrap overflow-hidden text-ellipsis">
+                        {/* Very kind mentor who has patience to explain everything I am not s... */}
+                        {el.content}
+                      </p>
+                    </button>
                   </td>
-                  <td className="p-[16px] pr-[2.9rem]">
+                  <td className="p-[16px]  pr-7">
                     <div className="flex items-center text-right justify-end">
-                      <span className="mr-[5.98rem] tb-time">{timeAgo.format(new Date(el.created_at))}</span>
+                      <span className="mr-[59.8px] tb-time">{timeAgo.format(new Date(el.created_at))}</span>
                       <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M1.66669 1.5L8.81335 8.64667C8.90715 8.74033 8.95986 8.86745 8.95986 9C8.95986 9.13255 8.90715 9.25967 8.81335 9.35333L1.66669 16.5"
@@ -288,7 +294,7 @@ const Table = ({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTes
           </tbody>
           <tfoot>
             <tr>
-              <td className="py-[1.7rem] px-[3.2rem]" colSpan="4">
+              <td className="py-5 px-8" colSpan="4">
                 <div className="flex items-center justify-between">
                   <button
                     onClick={() => {

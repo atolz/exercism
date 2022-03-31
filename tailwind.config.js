@@ -1,3 +1,5 @@
+// const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -6,7 +8,47 @@ module.exports = {
         primary: "var(--color-default)",
         secondary: "var(--color-secondary)",
       },
+      boxShadow: {
+        md: "0px 0px 3px 3px #2e57e840",
+      },
+      spacing: {
+        13: "3.25rem",
+        15: "3.75rem",
+        128: "32rem",
+        144: "36rem",
+      },
+      fontSize: {
+        // xs: ".75rem",
+        // sm: ".875rem",
+        // tiny: ".875rem",
+        // base: "1rem",
+        // lg: "1.125rem",
+        // xl: "1.25rem",
+        // "3xl": "1.875rem",
+        // "4xl": "2.25rem",
+        // "5xl": "3rem",
+        // "6xl": "4rem",
+        // "7xl": "5rem",
+        // ...defaultTheme.fontSize,
+        // "2xl": ["1.4rem", "2.4rem"],
+      },
     },
+
+    // fontSize: {
+    //   // xs: ".75rem",
+    //   // sm: ".875rem",
+    //   // tiny: ".875rem",
+    //   // base: "1rem",
+    //   // lg: "1.125rem",
+    //   // xl: "1.25rem",
+    //   // "3xl": "1.875rem",
+    //   // "4xl": "2.25rem",
+    //   // "5xl": "3rem",
+    //   // "6xl": "4rem",
+    //   // "7xl": "5rem",
+    //   // ...defaultTheme.fontSize,
+    //   // "2xl": ["1.4rem", "2.4rem"],
+    // },
 
     borderRadius: {
       none: "0",

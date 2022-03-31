@@ -5,6 +5,7 @@ import Container from "../components/Container";
 import { useState } from "react";
 import { baseUrl } from "../axios/request";
 import Table from "../components/Table";
+import Count from "../components/Count";
 
 export default function Home({ initTest, initTracks, initTotalPage, initTrackCounts, initNoTest }) {
   const [noTest, setNoTest] = useState(0);
@@ -27,16 +28,19 @@ export default function Home({ initTest, initTracks, initTotalPage, initTrackCou
         <Header></Header>
         <Container>
           <div>
-            <section className="grid place-items-center mb-[3.6rem]">
+            <section className="grid place-items-center mb-9">
               {/* <img src="/icons-svg/badge-mood-happy.svg" className="mt-[4.12rem]"></img> */}
-              <div className="!mt-[4.12rem] !block">
+              <div className=" !mt-10 !block">
                 <Image layout="fixed" height={64} width={64} src="/icons-svg/badge-mood-happy.svg" alt="exercism-badge"></Image>
               </div>
 
-              <h2 className="exe-h2  flex flex-wrap justify-center items-center mt-[1.32rem] translate-x-7">
-                Testimonials I’ve left <span className="exe-count ml-[1.6rem]">{initNoTest}</span>
+              <h2 className="exe-h2 flex flex-wrap justify-center items-center  mt-3 translate-x-[17px]">
+                Testimonials I’ve left{" "}
+                <span className="ml-[16px] flex">
+                  <Count value={initNoTest}></Count>
+                </span>
               </h2>
-              <div className="!mt-[2rem] !block">
+              <div className="!mt-5 !block">
                 <Image layout="fixed" height={18} width={78} src="/icons-svg/wriggle.svg" alt="wriggle"></Image>
               </div>
               {/* <img className="mt-[2rem]" src="/icons-svg/wriggle.svg"></img> */}
