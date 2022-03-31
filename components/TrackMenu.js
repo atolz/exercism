@@ -30,9 +30,9 @@ const TrackMenu = ({ show, tracks, setSelectedValue, selectedValue, track_counts
 
           {/* <Radio checked={selectedValue === "All"} onChange={handleChange} value="All" name="radio-buttons" inputProps={{ "aria-label": "All" }} /> */}
           <img className="ml-[26px] w-[2.35rem]" src="/icons-svg/exe-badge.svg" />
-          <span className=" ml-[18px] font-medium text-base leading-[2.2rem] text-[#3D3B45] mr-auto">All</span>
+          <span className=" ml-[18.23px] font-medium text-base leading-[2.2rem] text-[#3D3B45] mr-auto">All</span>
           <span className=" flex">
-            <Count value={totalTracks}></Count>
+            <Count color={`${selectedValue === "All" ? "#130B43" : ""}`} borderColor={`${selectedValue === "All" ? "#6A6781" : ""}`} value={totalTracks}></Count>
           </span>
           {/* <span className={`exe-count ${selectedValue === "All" ? " !text-primary" : ""}`}>{totalTracks}</span> */}
         </li>
@@ -52,9 +52,9 @@ const TrackMenu = ({ show, tracks, setSelectedValue, selectedValue, track_counts
               <MyRadio ariaLabel={track.titles} isChecked={selectedValue === track.slug} onChange={handleChange} id={track.slug} name="radio-buttons"></MyRadio>
               {/* <Radio checked={selectedValue === track.slug} onChange={handleChange} value={track.slug} name="radio-buttons" inputProps={{ "aria-label": track.title }} /> */}
               <img className="ml-[26px] ml-6 w-[2.35rem]" src={track.icon_url} />
-              <span className=" ml-[1.8rem] font-medium text-base leading-[2.2rem] text-[#3D3B45] mr-auto">{track.title}</span>
-              <span className="ml-[1.6rem] flex">
-                <Count value={track_counts[track.slug]}></Count>
+              <span className=" ml-[18.23px] font-medium text-base leading-[2.2rem] text-[#3D3B45] mr-auto">{track.title}</span>
+              <span className="flex">
+                <Count color={`${selectedValue === track.slug ? "#130B43" : ""}`} borderColor={`${selectedValue === track.slug ? "#6A6781" : ""}`} value={track_counts[track.slug]}></Count>
               </span>
               {/* <span className={`exe-count ${selectedValue === track.slug ? " !text-primary" : ""}`}>{track_counts[track.slug]}</span> */}
             </li>
